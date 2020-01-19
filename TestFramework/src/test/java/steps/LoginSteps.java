@@ -1,10 +1,27 @@
 package steps;
 
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.concurrent.TimeUnit;
 
 public class LoginSteps {
+
+    WebDriver driver;
+
+    @Before()
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "/Users/israelmesa/Desktop/ChromeDriver/chromedriver");
+        this.driver = new ChromeDriver();
+        this.driver.manage().window().maximize();
+        this.driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+
+    }
+
     @Given("^user navigates to stackoverflow website$")
     public void user_navigates_to_stackoverflow_website() throws Throwable {
         System.out.println("user_navigates_to_stackoverflow_website");
