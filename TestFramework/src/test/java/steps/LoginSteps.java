@@ -36,12 +36,12 @@ public class LoginSteps {
 
     @Given("^user enters a valid username$")
     public void user_enters_a_valid_username() throws Throwable {
-        driver.findElement(By.xpath("//*[@id='email']")).sendKeys("mesa.israel50@gmail.com");
+        driver.findElement(By.xpath("//*[@id='email']")).sendKeys("");
     }
 
     @Given("^user enters a valid password$")
     public void user_enters_a_valid_password() throws Throwable {
-        driver.findElement(By.xpath("//*[@id='password']")).sendKeys("RedOrange45");
+        driver.findElement(By.xpath("//*[@id='password']")).sendKeys("");
     }
 
     @When("^user clicks on the login button$")
