@@ -7,8 +7,6 @@ import org.testng.annotations.Test
 
 class Get200 {
 
-    private val client: CloseableHttpClient = HttpClientBuilder.create().build()
-
     @Test
     fun baseUrlReturns200() {
         val get = HttpGet(BASE_URL)
@@ -19,6 +17,7 @@ class Get200 {
 
     companion object {
       const val BASE_URL = "https://api.github.com"
+        val client: CloseableHttpClient = HttpClientBuilder.create().build()
     }
 
 }
