@@ -28,13 +28,19 @@ class ResponseUtils {
         }
 
         fun getHeaderWithSequence(res: CloseableHttpResponse, headerName: String): String? {
-
             val headers: Array<Header> = res.allHeaders
             val httpHeaders = headers.toList()
             val matchedHeader: Header? = httpHeaders.asSequence()
                     .filter { header -> headerName == header.name }
                     .firstOrNull()
             return matchedHeader?.value
+        }
+
+        fun headerIsPresent(res: CloseableHttpResponse, headerName: String): Boolean  {
+            val headers: Array<Header> = res.allHeaders
+            val httpHeaders = headers.toList()
+            return httpHeaders.asSequence()
+                    .any { header -> headerName == header.name }
         }
 
     }

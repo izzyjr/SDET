@@ -50,4 +50,18 @@ class ResponseHeaders {
         Assert.assertEquals(headerValue, 60)
     }
 
+    @Test
+    fun isDateReturned() {
+        response = client.execute(get)
+        val headerValue = ResponseUtils.headerIsPresent(response, "date")
+        Assert.assertEquals(headerValue, true)
+    }
+
+    @Test
+    fun isETagReturned() {
+        response = client.execute(get)
+        val headerValue = ResponseUtils.headerIsPresent(response, "etag")
+        Assert.assertEquals(headerValue, true)
+    }
+
 }
