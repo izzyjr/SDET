@@ -1,5 +1,6 @@
 import Get200.Companion.BASE_ENDPOINT
 import org.apache.http.HttpResponse
+import org.apache.http.client.methods.CloseableHttpResponse
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.CloseableHttpClient
 import org.apache.http.impl.client.HttpClientBuilder
@@ -12,7 +13,7 @@ class Get404 {
 
     lateinit var client: CloseableHttpClient
     lateinit var get: HttpGet
-    lateinit var response: HttpResponse
+    lateinit var response: CloseableHttpResponse
 
     @BeforeMethod
     fun setup() {

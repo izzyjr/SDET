@@ -1,6 +1,7 @@
 import Get200.Companion.BASE_ENDPOINT
 import Get200.Companion.endpointsArray
 import org.apache.http.HttpResponse
+import org.apache.http.client.methods.CloseableHttpResponse
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.CloseableHttpClient
 import org.apache.http.impl.client.HttpClientBuilder
@@ -14,7 +15,7 @@ class Get401 {
 
     private lateinit var client: CloseableHttpClient
     lateinit var get: HttpGet
-    private lateinit var response: HttpResponse
+    private lateinit var response: CloseableHttpResponse
 
     @BeforeMethod
     fun setup() {
@@ -24,6 +25,7 @@ class Get401 {
     @AfterMethod
     fun closeResources() {
         client.close()
+        response.close()
     }
 
     @DataProvider

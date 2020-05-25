@@ -1,4 +1,6 @@
+import org.apache.http.Header
 import org.apache.http.HttpResponse
+import org.apache.http.client.methods.CloseableHttpResponse
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.CloseableHttpClient
 import org.apache.http.impl.client.HttpClientBuilder
@@ -10,8 +12,7 @@ import org.testng.annotations.Test
 class Get200 {
 
     private lateinit var client: CloseableHttpClient
-    lateinit var get: HttpGet
-    private lateinit var response: HttpResponse
+    private lateinit var response: CloseableHttpResponse
 
     @BeforeMethod
     fun setup() {
@@ -21,11 +22,11 @@ class Get200 {
     @AfterMethod
     fun closeResources() {
         client.close()
+        response.close()
     }
 
     @Test
     fun baseUrlReturns200() {
-        get = HttpGet(BASE_ENDPOINT)
         response = client.execute(get)
         val actualStatus = response.statusLine.statusCode
         Assert.assertEquals(actualStatus, 200)
@@ -34,6 +35,7 @@ class Get200 {
 
     companion object {
         const val BASE_ENDPOINT = "https://api.github.com"
+        val get: HttpGet = HttpGet(BASE_ENDPOINT)
         val endpointsArray = arrayOf("/user", "/user/followers", "/notifications")
     }
 
