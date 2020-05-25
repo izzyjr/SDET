@@ -9,15 +9,16 @@ class Get200 {
 
     @Test
     fun baseUrlReturns200() {
-        val get = HttpGet(BASE_URL)
+        val get = HttpGet(BASE_ENDPOINT)
         val response: HttpResponse = client.execute(get)
         val actualStatus = response.statusLine.statusCode
         Assert.assertEquals(actualStatus, 200)
     }
 
     companion object {
-      const val BASE_URL = "https://api.github.com"
+        const val BASE_ENDPOINT = "https://api.github.com"
         val client: CloseableHttpClient = HttpClientBuilder.create().build()
+        val endpointsArray = arrayOf("/user", "/user/followers", "/notifications")
     }
 
 }
