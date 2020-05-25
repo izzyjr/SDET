@@ -1,13 +1,30 @@
 import Get200.Companion.BASE_ENDPOINT
-import Get200.Companion.client
 import Get200.Companion.endpointsArray
 import org.apache.http.HttpResponse
 import org.apache.http.client.methods.HttpGet
+import org.apache.http.impl.client.CloseableHttpClient
+import org.apache.http.impl.client.HttpClientBuilder
 import org.testng.Assert
+import org.testng.annotations.AfterMethod
+import org.testng.annotations.BeforeMethod
 import org.testng.annotations.DataProvider
 import org.testng.annotations.Test
 
 class Get401 {
+
+    lateinit var client: CloseableHttpClient
+    lateinit var get: HttpGet
+    lateinit var response: HttpResponse
+
+    @BeforeMethod
+    fun setup() {
+        client = HttpClientBuilder.create().build()
+    }
+
+    @AfterMethod
+    fun closeResources() {
+        client.close()
+    }
 
     @DataProvider
     fun endpoints(): Array<String> {
@@ -16,32 +33,32 @@ class Get401 {
 
     @Test(dataProvider = "endpoints")
     fun refactoredThreeIntoOne(endpoint: String) {
-        val get = HttpGet("$BASE_ENDPOINT$endpoint")
-        val response: HttpResponse = client.execute(get)
+        get = HttpGet("$BASE_ENDPOINT$endpoint")
+        response = client.execute(get)
         val actualStatus = response.statusLine.statusCode
         Assert.assertEquals(actualStatus, 401)
     }
 
     @Test
     fun userReturns401() {
-        val get = HttpGet("$BASE_ENDPOINT/user")
-        val response: HttpResponse = client.execute(get)
+        get = HttpGet("$BASE_ENDPOINT/user")
+        response = client.execute(get)
         val actualStatus = response.statusLine.statusCode
         Assert.assertEquals(actualStatus, 401)
     }
 
     @Test
     fun userFollowersReturns401() {
-        val get = HttpGet("$BASE_ENDPOINT/user/followers")
-        val response: HttpResponse = client.execute(get)
+        get = HttpGet("$BASE_ENDPOINT/user/followers")
+        response = client.execute(get)
         val actualStatus = response.statusLine.statusCode
         Assert.assertEquals(actualStatus, 401)
     }
 
     @Test
     fun notificationsReturns401() {
-        val get = HttpGet("$BASE_ENDPOINT/notifications")
-        val response: HttpResponse = client.execute(get)
+        get = HttpGet("$BASE_ENDPOINT/notifications")
+        response = client.execute(get)
         val actualStatus = response.statusLine.statusCode
         Assert.assertEquals(actualStatus, 401)
     }
