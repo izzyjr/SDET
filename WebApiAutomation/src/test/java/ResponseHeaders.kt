@@ -1,9 +1,6 @@
-import Get200.Companion.BASE_ENDPOINT
 import Get200.Companion.get
 import org.apache.http.Header
-import org.apache.http.HttpResponse
 import org.apache.http.client.methods.CloseableHttpResponse
-import org.apache.http.client.methods.HttpGet
 import org.apache.http.entity.ContentType
 import org.apache.http.impl.client.CloseableHttpClient
 import org.apache.http.impl.client.HttpClientBuilder
@@ -11,7 +8,6 @@ import org.testng.Assert
 import org.testng.annotations.AfterMethod
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
-import kotlin.test.assertEquals
 
 class ResponseHeaders {
 
@@ -19,7 +15,6 @@ class ResponseHeaders {
     private lateinit var response: CloseableHttpResponse
     private lateinit var contentType: Header
     private lateinit var ct: ContentType
-    var responseUtils = ResponseUtils()
 
     @BeforeMethod
     fun setup() {
@@ -44,8 +39,15 @@ class ResponseHeaders {
     @Test
     fun serverIsGithub() {
         response = client.execute(get)
-        val headerValue = responseUtils.getHeader(response, "server")
+        val headerValue = ResponseUtils.getHeader(response, "server")
         Assert.assertEquals(headerValue, "GitHub.com")
+    }
+
+    @Test
+    fun xRateLimitIsSixty() {
+        response = client.execute(get)
+        val headerValue = ResponseUtils.getHeaderWithSequence(response, "X-Ratelimit-Limit")?.toInt()
+        Assert.assertEquals(headerValue, 60)
     }
 
 }
