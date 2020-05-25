@@ -12,9 +12,9 @@ import org.testng.annotations.Test
 
 class Get401 {
 
-    lateinit var client: CloseableHttpClient
+    private lateinit var client: CloseableHttpClient
     lateinit var get: HttpGet
-    lateinit var response: HttpResponse
+    private lateinit var response: HttpResponse
 
     @BeforeMethod
     fun setup() {
