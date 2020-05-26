@@ -1,5 +1,4 @@
-import Get200.Companion.BASE_ENDPOINT
-import org.apache.http.HttpResponse
+import entities.User.Companion.BASE_ENDPOINT
 import org.apache.http.client.methods.CloseableHttpResponse
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.CloseableHttpClient

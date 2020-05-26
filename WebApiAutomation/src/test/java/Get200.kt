@@ -1,7 +1,5 @@
-import org.apache.http.Header
-import org.apache.http.HttpResponse
+import entities.User.Companion.get
 import org.apache.http.client.methods.CloseableHttpResponse
-import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.CloseableHttpClient
 import org.apache.http.impl.client.HttpClientBuilder
 import org.testng.Assert
@@ -30,13 +28,6 @@ class Get200 {
         response = client.execute(get)
         val actualStatus = response.statusLine.statusCode
         Assert.assertEquals(actualStatus, 200)
-    }
-
-
-    companion object {
-        const val BASE_ENDPOINT = "https://api.github.com"
-        val get: HttpGet = HttpGet(BASE_ENDPOINT)
-        val endpointsArray = arrayOf("/user", "/user/followers", "/notifications")
     }
 
 }
