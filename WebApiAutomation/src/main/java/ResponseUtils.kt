@@ -1,7 +1,8 @@
 import org.apache.http.Header
 import org.apache.http.client.methods.CloseableHttpResponse
+import org.json.JSONObject
 
-class ResponseUtils {
+open class ResponseUtils {
 
     companion object {
         fun getHeader(res: CloseableHttpResponse, headerName: String): String {
@@ -41,6 +42,10 @@ class ResponseUtils {
             val httpHeaders = headers.toList()
             return httpHeaders.asSequence()
                     .any { header -> headerName == header.name }
+        }
+
+        fun getValueFor(jsonObject: JSONObject, key: String): Any {
+            return jsonObject.get(key)
         }
 
     }
