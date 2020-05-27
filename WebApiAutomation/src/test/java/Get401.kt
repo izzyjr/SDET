@@ -1,5 +1,5 @@
-import entities.User.Companion.BASE_ENDPOINT
-import entities.User.Companion.endpointsArray
+import ResponseUtils.Companion.BASE_ENDPOINT
+import ResponseUtils.Companion.endpointsArray
 import org.apache.http.client.methods.CloseableHttpResponse
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.CloseableHttpClient

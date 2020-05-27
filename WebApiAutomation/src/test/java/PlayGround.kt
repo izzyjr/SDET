@@ -1,3 +1,5 @@
+import entities.User
+
 fun main() {
 
     val scores = listOf(1, 2, 3, 4)
@@ -9,6 +11,9 @@ fun main() {
 
     val names = listOf("John", "Mary", "Peter")
     println(nameSequence(names, "Israel"))
+
+    val michael = User("login", 123)
+    println(michael.toString())
 
 }
 

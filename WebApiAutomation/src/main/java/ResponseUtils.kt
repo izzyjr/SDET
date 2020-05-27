@@ -1,10 +1,23 @@
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
+import entities.User
 import org.apache.http.Header
 import org.apache.http.client.methods.CloseableHttpResponse
+import org.apache.http.client.methods.HttpGet
+import org.apache.http.util.EntityUtils
 import org.json.JSONObject
 
 open class ResponseUtils {
 
     companion object {
+
+        private val mapper = jacksonObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+
+        const val BASE_ENDPOINT = "https://api.github.com"
+        val get: HttpGet = HttpGet(BASE_ENDPOINT)
+        val endpointsArray = arrayOf("/user", "/user/followers", "/notifications")
+
         fun getHeader(res: CloseableHttpResponse, headerName: String): String {
 
             // get all headers
@@ -13,7 +26,7 @@ open class ResponseUtils {
             var returnHeader = ""
 
             // loop over the headers list
-            for(header in httpHeaders) {
+            for (header in httpHeaders) {
                 if (headerName == header.name) {
                     returnHeader = header.value
                 }
@@ -37,7 +50,7 @@ open class ResponseUtils {
             return matchedHeader?.value
         }
 
-        fun headerIsPresent(res: CloseableHttpResponse, headerName: String): Boolean  {
+        fun headerIsPresent(res: CloseableHttpResponse, headerName: String): Boolean {
             val headers: Array<Header> = res.allHeaders
             val httpHeaders = headers.toList()
             return httpHeaders.asSequence()
@@ -46,6 +59,11 @@ open class ResponseUtils {
 
         fun getValueFor(jsonObject: JSONObject, key: String): Any {
             return jsonObject.get(key)
+        }
+
+        fun unmarshal(response: CloseableHttpResponse): User {
+            val jsonBody = EntityUtils.toString(response.entity)
+            return mapper.readValue(jsonBody)
         }
 
     }

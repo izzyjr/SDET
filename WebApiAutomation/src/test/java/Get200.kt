@@ -1,4 +1,4 @@
-import entities.User.Companion.get
+import ResponseUtils.Companion.get
 import org.apache.http.client.methods.CloseableHttpResponse
 import org.apache.http.impl.client.CloseableHttpClient
 import org.apache.http.impl.client.HttpClientBuilder

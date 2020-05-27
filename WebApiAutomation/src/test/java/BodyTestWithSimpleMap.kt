@@ -1,4 +1,3 @@
-import entities.User.Companion.BASE_ENDPOINT
 import entities.User.Companion.EMAIL
 import entities.User.Companion.ID
 import entities.User.Companion.LOGIN
@@ -15,7 +14,6 @@ import org.testng.Assert
 import org.testng.annotations.AfterMethod
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
-import kotlin.reflect.typeOf
 
 class BodyTestWithSimpleMap : ResponseUtils() {
 
@@ -53,7 +51,7 @@ class BodyTestWithSimpleMap : ResponseUtils() {
         val jsonBody = EntityUtils.toString(response.entity)
         val jsonObject = JSONObject(jsonBody)
         val loginValue = getValueFor(jsonObject, ID) as Int
-        Assert.assertEquals (loginValue, 11834443)
+        Assert.assertEquals(loginValue, 11834443)
     }
 
     @Test
@@ -63,7 +61,7 @@ class BodyTestWithSimpleMap : ResponseUtils() {
         val jsonBody = EntityUtils.toString(response.entity)
         val jsonObject = JSONObject(jsonBody)
         val loginValue = getValueFor(jsonObject, TYPE) as String
-        Assert.assertEquals (loginValue, "User")
+        Assert.assertEquals(loginValue, "User")
     }
 
     @Test
