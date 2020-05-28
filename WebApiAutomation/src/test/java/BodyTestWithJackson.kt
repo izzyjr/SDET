@@ -1,5 +1,5 @@
 import ResponseUtils.Companion.BASE_ENDPOINT
-import ResponseUtils.Companion.unmarshal
+import ResponseUtils.Companion.unmarshalUser
 import entities.User
 import org.apache.http.Header
 import org.apache.http.client.methods.CloseableHttpResponse
@@ -11,7 +11,6 @@ import org.testng.Assert
 import org.testng.annotations.AfterMethod
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
-import javax.xml.bind.JAXB.unmarshal
 
 class BodyTestWithJackson {
 
@@ -37,7 +36,7 @@ class BodyTestWithJackson {
     fun returnsCorrectLogin() {
         get = HttpGet("$BASE_ENDPOINT/users/andrejss88")
         response = client.execute(get)
-        user = unmarshal(response)
+        user = unmarshalUser(response)
         println(user.login)
         Assert.assertEquals(user.login, "andrejss88")
     }
@@ -46,7 +45,7 @@ class BodyTestWithJackson {
     fun returnsCorrectID() {
         get = HttpGet("$BASE_ENDPOINT/users/andrejss88")
         response = client.execute(get)
-        user = unmarshal(response)
+        user = unmarshalUser(response)
         println(user.id)
         Assert.assertEquals(user.id, 11834443)
     }

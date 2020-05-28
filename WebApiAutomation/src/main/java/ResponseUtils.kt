@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import entities.NotFound
 import entities.User
 import org.apache.http.Header
 import org.apache.http.client.methods.CloseableHttpResponse
@@ -12,7 +13,7 @@ open class ResponseUtils {
 
     companion object {
 
-        private val mapper = jacksonObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+        val mapper = jacksonObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
         const val BASE_ENDPOINT = "https://api.github.com"
         val get: HttpGet = HttpGet(BASE_ENDPOINT)
@@ -61,9 +62,20 @@ open class ResponseUtils {
             return jsonObject.get(key)
         }
 
-        fun unmarshal(response: CloseableHttpResponse): User {
+        fun unmarshalUser(response: CloseableHttpResponse): User {
             val jsonBody = EntityUtils.toString(response.entity)
             return mapper.readValue(jsonBody)
+        }
+
+        fun unmarshalNotFound(response: CloseableHttpResponse): NotFound {
+            val jsonBody = EntityUtils.toString(response.entity)
+            return mapper.readValue(jsonBody)
+        }
+
+        // WORK IN PROGRESS - NOT USING YET
+        fun <T> unmarshallGeneric(response: CloseableHttpResponse, clazz: Class<T>?): T {
+            val jsonBody = EntityUtils.toString(response.entity)
+            return mapper.readValue(jsonBody, clazz)
         }
 
     }
