@@ -30,7 +30,7 @@ class Get404 {
 
     @Test
     fun nonExistentUrlReturns404() {
-        get = HttpGet("$BASE_ENDPOINT/nonexistanturl")
+        get = HttpGet("$BASE_ENDPOINT/nonexistingturl")
         response = client.execute(get)
         val actualStatus = response.statusLine.statusCode
         Assert.assertEquals(actualStatus, 404)
@@ -38,7 +38,7 @@ class Get404 {
 
     @Test
     fun messageNotFound404() {
-        get = HttpGet("$BASE_ENDPOINT/nonexistanturl")
+        get = HttpGet("$BASE_ENDPOINT/nonexistingturl")
         response = client.execute(get)
         message404 = unmarshalNotFound(response)
         println(message404.toString())
@@ -47,7 +47,7 @@ class Get404 {
 
     @Test
     fun urlDocumentationNotFound404() {
-        get = HttpGet("$BASE_ENDPOINT/nonexistanturl")
+        get = HttpGet("$BASE_ENDPOINT/nonexistingturl")
         response = client.execute(get)
         message404 = unmarshalNotFound(response)
         Assert.assertEquals(message404.documentation_url, "https://developer.github.com/v3")
