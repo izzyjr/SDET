@@ -1,5 +1,7 @@
 import ResponseUtils.Companion.BASE_ENDPOINT
 import ResponseUtils.Companion.unmarshalUser
+import ResponseUtils.Companion.unmarshallGeneric
+import entities.NotFound
 import entities.User
 import org.apache.http.Header
 import org.apache.http.client.methods.CloseableHttpResponse
@@ -45,9 +47,18 @@ class BodyTestWithJackson {
     fun returnsCorrectID() {
         get = HttpGet("$BASE_ENDPOINT/users/andrejss88")
         response = client.execute(get)
-        user = unmarshalUser(response)
+        val user: User = unmarshallGeneric(response, User::class.java)
         println(user.id)
         Assert.assertEquals(user.id, 11834443)
+    }
+
+    @Test
+    fun returnsNotFound() {
+        get = HttpGet("$BASE_ENDPOINT/nonexistingendpoint")
+        response = client.execute(get)
+        val notFoundMessage: NotFound = unmarshallGeneric(response, NotFound::class.java)
+        println(notFoundMessage.message)
+        Assert.assertEquals(notFoundMessage.message, "Not Found")
     }
 
 }
