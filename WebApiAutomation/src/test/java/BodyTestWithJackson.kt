@@ -2,11 +2,10 @@ import ResponseUtils.Companion.BASE_ENDPOINT
 import ResponseUtils.Companion.unmarshalUser
 import ResponseUtils.Companion.unmarshallGeneric
 import entities.NotFound
+import entities.RateLimit
 import entities.User
-import org.apache.http.Header
 import org.apache.http.client.methods.CloseableHttpResponse
 import org.apache.http.client.methods.HttpGet
-import org.apache.http.entity.ContentType
 import org.apache.http.impl.client.CloseableHttpClient
 import org.apache.http.impl.client.HttpClientBuilder
 import org.testng.Assert
@@ -18,8 +17,6 @@ class BodyTestWithJackson {
 
     private lateinit var client: CloseableHttpClient
     private lateinit var response: CloseableHttpResponse
-    private lateinit var contentType: Header
-    private lateinit var ct: ContentType
     private lateinit var user: User
     lateinit var get: HttpGet
 
@@ -59,6 +56,16 @@ class BodyTestWithJackson {
         val notFoundMessage: NotFound = unmarshallGeneric(response, NotFound::class.java)
         println(notFoundMessage.message)
         Assert.assertEquals(notFoundMessage.message, "Not Found")
+    }
+
+    @Test
+    fun correctRateLimitsAreSet() {
+        get = HttpGet("$BASE_ENDPOINT/rate_limit")
+        response = client.execute(get)
+        val rateLimits: RateLimit = unmarshallGeneric(response, RateLimit::class.java)
+        println(rateLimits.coreLimit)
+        println(rateLimits.searchLimit)
+        Assert.assertEquals(rateLimits.coreLimit, 60)
     }
 
 }

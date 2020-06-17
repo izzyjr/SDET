@@ -73,7 +73,7 @@ open class ResponseUtils {
         }
 
         // It works!!
-        fun <T> unmarshallGeneric(response: CloseableHttpResponse, clazz: Class<T>?): T {
+        fun <T> unmarshallGeneric(response: CloseableHttpResponse, clazz: Class<T>): T {
             val jsonBody = EntityUtils.toString(response.entity)
             return mapper.readValue(jsonBody, clazz)
         }
