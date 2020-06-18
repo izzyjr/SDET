@@ -4,6 +4,7 @@ import ResponseUtils.Companion.unmarshallGeneric
 import entities.NotFound
 import entities.RateLimit
 import entities.User
+import javacode.Core
 import org.apache.http.client.methods.CloseableHttpResponse
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.CloseableHttpClient
@@ -66,6 +67,20 @@ class BodyTestWithJackson {
         println(rateLimits.coreLimit)
         println(rateLimits.searchLimit)
         Assert.assertEquals(rateLimits.coreLimit, 60)
+        Assert.assertEquals(rateLimits.searchLimit, 10)
+    }
+
+    @Test
+    fun correctCoreProperties() {
+        get = HttpGet("$BASE_ENDPOINT/rate_limit")
+        response = client.execute(get)
+        val coreProperties: Core? = unmarshallGeneric(response, Core::class.java)
+        println(coreProperties?.limit)
+        println(coreProperties?.remaining)
+        println(coreProperties?.reset)
+        Assert.assertEquals(coreProperties?.limit, 60)
+        Assert.assertEquals(coreProperties?.remaining, 51)
+        Assert.assertEquals(coreProperties?.reset, 1592359340)
     }
 
 }
