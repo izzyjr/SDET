@@ -2,7 +2,7 @@ package entities
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-class RateLimit(var coreLimit: Int?, var searchLimit: Int?) {
+class RateLimitLimited(var coreLimit: Int?, var searchLimit: Int?) {
 
     @JsonProperty("resources")
     fun unmarshallNested(resources: HashMap<String, Any>) {

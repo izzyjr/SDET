@@ -18,11 +18,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Core {
 
     @JsonProperty("limit")
-    private Integer limit;
+    private int limit;
     @JsonProperty("remaining")
-    private Integer remaining;
+    private int remaining;
     @JsonProperty("reset")
-    private Integer reset;
+    private int reset;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 

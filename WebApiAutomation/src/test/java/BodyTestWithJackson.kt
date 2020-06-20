@@ -2,9 +2,9 @@ import ResponseUtils.Companion.BASE_ENDPOINT
 import ResponseUtils.Companion.unmarshalUser
 import ResponseUtils.Companion.unmarshallGeneric
 import entities.NotFound
-import entities.RateLimit
+import entities.RateLimitLimited
+import entities.Resources
 import entities.User
-import javacode.Core
 import org.apache.http.client.methods.CloseableHttpResponse
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.CloseableHttpClient
@@ -63,7 +63,7 @@ class BodyTestWithJackson {
     fun correctRateLimitsAreSet() {
         get = HttpGet("$BASE_ENDPOINT/rate_limit")
         response = client.execute(get)
-        val rateLimits: RateLimit = unmarshallGeneric(response, RateLimit::class.java)
+        val rateLimits: RateLimitLimited = unmarshallGeneric(response, RateLimitLimited::class.java)
         println(rateLimits.coreLimit)
         println(rateLimits.searchLimit)
         Assert.assertEquals(rateLimits.coreLimit, 60)
@@ -71,16 +71,14 @@ class BodyTestWithJackson {
     }
 
     @Test
-    fun correctCoreProperties() {
+    fun correctResourcesProperties() {
         get = HttpGet("$BASE_ENDPOINT/rate_limit")
         response = client.execute(get)
-        val coreProperties: Core? = unmarshallGeneric(response, Core::class.java)
-        println(coreProperties?.limit)
-        println(coreProperties?.remaining)
-        println(coreProperties?.reset)
-        Assert.assertEquals(coreProperties?.limit, 60)
-        Assert.assertEquals(coreProperties?.remaining, 51)
-        Assert.assertEquals(coreProperties?.reset, 1592359340)
+        val resourcesProperties: Resources = unmarshallGeneric(response, Resources::class.java)
+        println(resourcesProperties.coreLimit)
+        println(resourcesProperties.graphqlRemaining)
+        Assert.assertEquals(resourcesProperties.coreLimit, 60)
+        Assert.assertEquals(resourcesProperties.graphqlRemaining, 0)
     }
 
 }
