@@ -1,10 +1,7 @@
 import ResponseUtils.Companion.BASE_ENDPOINT
 import ResponseUtils.Companion.unmarshalUser
 import ResponseUtils.Companion.unmarshallGeneric
-import entities.NotFound
-import entities.RateLimitLimited
-import entities.Resources
-import entities.User
+import entities.*
 import org.apache.http.client.methods.CloseableHttpResponse
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.CloseableHttpClient
@@ -79,6 +76,17 @@ class BodyTestWithJackson {
         println(resourcesProperties.graphqlRemaining)
         Assert.assertEquals(resourcesProperties.coreLimit, 60)
         Assert.assertEquals(resourcesProperties.graphqlRemaining, 0)
+    }
+
+    @Test
+    fun correctRateLimitWithPojoGenerationPluginTest() {
+        get = HttpGet("$BASE_ENDPOINT/rate_limit")
+        response = client.execute(get)
+        val rateLimitData: RateLimit = unmarshallGeneric(response, RateLimit::class.java)
+        println(rateLimitData.resources?.graphql?.reset)
+        println(rateLimitData.rate?.remaining)
+        println(rateLimitData.resources?.integrationManifest?.remaining)
+        println(rateLimitData.resources?.core?.reset)
     }
 
 }
