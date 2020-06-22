@@ -15,6 +15,9 @@ fun main() {
     val michael = User("login", 123)
     println(michael.toString())
 
+    val str: String = "Hello"
+    str.toByte()
+
 }
 
 fun nameSequence(names: List<String>, query: String) =
