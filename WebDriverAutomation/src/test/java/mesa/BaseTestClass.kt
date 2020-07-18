@@ -1,4 +1,0 @@
-package mesa
-
-class BaseTestClass {
-}
