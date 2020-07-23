@@ -10,7 +10,7 @@ open class MesaUtils {
         const val GOOGLE_SEARCH_BUTTON = "//*[@id=\"tsf\"]/div[2]/div[1]/div[3]/center/input[1]"
         const val MOVIE = "The Fifth Element"
         const val SEARCH = "pluralsight"
-        const val IMAGE = "//*[@data-iml=\"714.9199999985285\"]"
+        const val IMAGE = "img[alt='Pluralsight – The Technology Skills Platform - Apps on Google Play']"
 
     }
 

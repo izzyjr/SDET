@@ -38,8 +38,8 @@ class WebDriverDemo {
         searchField.submit()
         val imagesLink: WebElement = driver.findElements(By.linkText("Images"))[0]
         imagesLink.click()
-        val image: WebElement = driver.findElement(By.xpath(MesaUtils.IMAGE))
-        image.click()
+        val imageElement: WebElement = driver.findElements(By.cssSelector(MesaUtils.IMAGE))[0]
+        imageElement.click()
     }
 
 }
