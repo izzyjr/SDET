@@ -18,21 +18,24 @@ class WebDriverDemo {
     fun startUpBrowser() {
         System.setProperty("webdriver.chrome.driver", MesaUtils.PATH)
         driver = ChromeDriver()
+    }
+
+    @Test(enabled = false)
+    fun searchMovie() {
         driver.get("https://google.com")
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
         driver.manage().window().fullscreen()
+        val searchField: WebElement = driver.findElement(By.xpath(MesaUtils.GOOGLE_SEARCH_BAR))
+        searchField.sendKeys(MesaUtils.MOVIE)
+        val searchButton: WebElement = driver.findElement(By.xpath(MesaUtils.GOOGLE_SEARCH_BUTTON))
+        searchButton.click()
     }
 
-//    @Test
-//    fun searchMovie() {
-//        val searchField: WebElement = driver.findElement(By.xpath(MesaUtils.GOOGLE_SEARCH_BAR))
-//        searchField.sendKeys(MesaUtils.MOVIE)
-//        val searchButton: WebElement = driver.findElement(By.xpath(MesaUtils.GOOGLE_SEARCH_BUTTON))
-//        searchButton.click()
-//    }
-
-    @Test
-    fun demoTest() {
+    @Test(enabled = false)
+    fun googleImageTest() {
+        driver.get("https://google.com")
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
+        driver.manage().window().fullscreen()
         val searchField: WebElement = driver.findElement(By.xpath(MesaUtils.GOOGLE_SEARCH_BAR))
         searchField.sendKeys(MesaUtils.SEARCH)
         searchField.submit()
@@ -40,6 +43,20 @@ class WebDriverDemo {
         imagesLink.click()
         val imageElement: WebElement = driver.findElements(By.cssSelector(MesaUtils.IMAGE))[0]
         imageElement.click()
+    }
+
+    @Test(enabled = true)
+    fun radioButtonTest() {
+        driver.get("http://localhost:63342/WebDriverAutomation/src/main/webapp/RadioButtonTest.html")
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
+        driver.manage().window().fullscreen()
+        val radioButtons: List<WebElement> = driver.findElements(By.name("color"))
+        radioButtons[1].click()
+        for (radioButton in radioButtons) {
+            if(radioButton.isSelected) {
+                println(radioButton.getAttribute("value"))
+            }
+        }
     }
 
 }
