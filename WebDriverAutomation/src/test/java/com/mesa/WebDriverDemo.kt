@@ -45,9 +45,9 @@ class WebDriverDemo {
         imageElement.click()
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     fun radioButtonTest() {
-        driver.get("http://localhost:63342/WebDriverAutomation/src/main/webapp/RadioButtonTest.html")
+        driver.get("http://localhost:63342/WebDriverAutomation/src/main/webapp/WebElementTest.html")
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
         driver.manage().window().fullscreen()
         val radioButtons: List<WebElement> = driver.findElements(By.name("color"))
@@ -57,6 +57,16 @@ class WebDriverDemo {
                 println(radioButton.getAttribute("value"))
             }
         }
+    }
+
+    @Test(enabled = true)
+    fun checkboxTest() {
+        driver.get("http://localhost:63342/WebDriverAutomation/src/main/webapp/WebElementTest.html")
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
+        driver.manage().window().fullscreen()
+        val checkbox: WebElement = driver.findElement(By.id("turkeyCheckbox"))
+        checkbox.click()
+        println(checkbox.getAttribute("value"))
     }
 
 }
