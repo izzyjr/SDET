@@ -9,14 +9,13 @@ import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 import java.util.concurrent.TimeUnit
 
-class WebDriverDemo {
+class TestingWebDriver {
 
     private lateinit var driver: WebDriver
-    private lateinit var wait: WebDriverWait
 
     @BeforeMethod
     fun startUpBrowser() {
-        System.setProperty("webdriver.chrome.driver", MesaUtils.PATH)
+        System.setProperty("webdriver.chrome.driver", MesaUtils.CHROME)
         driver = ChromeDriver()
     }
 
