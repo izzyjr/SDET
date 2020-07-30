@@ -69,7 +69,7 @@ class WebDriverDemo {
         println(checkbox.getAttribute("value"))
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     fun selectItemsTest() {
         driver.get("http://localhost:63342/WebDriverAutomation/src/main/webapp/WebElementTest.html")
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
@@ -77,6 +77,26 @@ class WebDriverDemo {
         val selectItem: WebElement = driver.findElement(By.id("select1"))
         val select: Select = Select(selectItem)
         select.selectByVisibleText("Maybe")
+    }
+
+    @Test(enabled = true)
+    fun tableTest() {
+        driver.get("http://localhost:63342/WebDriverAutomation/src/main/webapp/WebElementTest.html")
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
+        driver.manage().window().fullscreen()
+        val outerTable: WebElement = driver.findElement(By.tagName("table"))
+        val innerTable: WebElement = outerTable.findElement(By.tagName("table"))
+        val row: WebElement = innerTable.findElements(By.tagName("td"))[0]
+        println(row.text)
+    }
+
+    @Test(enabled = true)
+    fun tableTestXpath() {
+        driver.get("http://localhost:63342/WebDriverAutomation/src/main/webapp/WebElementTest.html")
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
+        driver.manage().window().fullscreen()
+        val row: WebElement = driver.findElement(By.xpath("//td[text()='Yoshi Tannamuri']"))
+        println(row.text)
     }
 
 }
