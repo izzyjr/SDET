@@ -4,12 +4,13 @@ import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.support.ui.Select
 import org.openqa.selenium.support.ui.WebDriverWait
 import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 import java.util.concurrent.TimeUnit
 
-class TestingWebDriver {
+class WebDriverDemo {
 
     private lateinit var driver: WebDriver
 
@@ -58,7 +59,7 @@ class TestingWebDriver {
         }
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     fun checkboxTest() {
         driver.get("http://localhost:63342/WebDriverAutomation/src/main/webapp/WebElementTest.html")
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
@@ -66,6 +67,16 @@ class TestingWebDriver {
         val checkbox: WebElement = driver.findElement(By.id("turkeyCheckbox"))
         checkbox.click()
         println(checkbox.getAttribute("value"))
+    }
+
+    @Test(enabled = true)
+    fun selectItemsTest() {
+        driver.get("http://localhost:63342/WebDriverAutomation/src/main/webapp/WebElementTest.html")
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS)
+        driver.manage().window().fullscreen()
+        val selectItem: WebElement = driver.findElement(By.id("select1"))
+        val select: Select = Select(selectItem)
+        select.selectByVisibleText("Maybe")
     }
 
 }
