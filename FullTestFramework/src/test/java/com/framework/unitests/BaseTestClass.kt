@@ -11,9 +11,7 @@ open class BaseTestClass {
     private lateinit var options: ChromeOptions
     protected lateinit var driver: WebDriver
 
-
-
-    open fun setUp() {
+    fun setUp() {
         System.setProperty("webdriver.chrome.driver", CHROME_PATH)
         options = ChromeOptions().addArguments("start-fullscreen")
         driver = ChromeDriver(options)
@@ -23,4 +21,10 @@ open class BaseTestClass {
     open fun cleanUp() {
         driver.close()
     }
+
+    protected companion object {
+        const val BASE_URL: String = "https://github.com/"
+        const val USER: String = "izzyjr"
+    }
+
 }

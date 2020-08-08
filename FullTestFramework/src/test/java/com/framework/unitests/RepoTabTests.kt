@@ -1,20 +1,16 @@
 package com.framework.unitests
 
-import Utils.Companion.BASE_URL
-import Utils.Companion.USER
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 import org.testng.Assert
 import org.testng.annotations.AfterTest
-import org.testng.annotations.BeforeTest
 import org.testng.annotations.Test
 
 class RepoTabTests : BaseTestClass() {
 
 
-    @BeforeTest
-    override fun setUp() {
-        super.setUp()
+    init {
+        setUp()
     }
 
     @Test(enabled = true)
