@@ -1,53 +1,25 @@
-package com.framework
+package com.framework.uitests
 
-import com.framework.uitests.BaseTestClass
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 import org.testng.Assert.assertEquals
 import org.testng.annotations.AfterTest
+import org.testng.annotations.BeforeTest
 import org.testng.annotations.Test
 
-class FirstUITest : BaseTestClass() {
+class RepoTabTests : BaseTestClass() {
 
-    init {
-        setUp()
+    @BeforeTest
+    override fun setUp() {
+        super.setUp()
+        driver.get(REPOS_URL)
     }
 
-    @Test(enabled = true)
-    fun userNameIsCorrectOnOverviewTab() {
-
-        // Arrange
-        driver.get(USER_URL)
-
-        // Act
-        val actualUserName: String = driver.findElement(By.className("p-nickname")).text
-
-        // Assert
-        assertEquals(actualUserName, USER)
-    }
-
-    @Test(enabled = true)
-    fun repoLinkGoesToCorrectRepo() {
-
-        // Arrange
-        val repoUrl: String = TRIBUTE_REPO
-        driver.get(USER_URL)
-
-        // Act
-        val repository: WebElement = driver.findElement(By.xpath(TRIBUTE_REPO_XPATH))
-        repository.click()
-
-        // Assert
-        val actualRepoUrl: String = driver.currentUrl
-        assertEquals(actualRepoUrl, repoUrl)
-    }
-
-    @Test(enabled = true)
+    @Test(priority = 0)
     fun countNumberOfRepos() {
 
         // Arrange
         val expectedRepoCount: Int = 66
-        driver.get(REPOS_URL)
 
         // Act
         var flag: Boolean = true

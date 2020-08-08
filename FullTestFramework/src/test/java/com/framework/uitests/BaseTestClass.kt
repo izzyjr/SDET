@@ -1,4 +1,4 @@
-package com.framework.unitests
+package com.framework.uitests
 
 import Utils.Companion.CHROME_PATH
 import org.openqa.selenium.WebDriver
@@ -11,7 +11,7 @@ open class BaseTestClass {
     private lateinit var options: ChromeOptions
     protected lateinit var driver: WebDriver
 
-    fun setUp() {
+    open fun setUp() {
         System.setProperty("webdriver.chrome.driver", CHROME_PATH)
         options = ChromeOptions().addArguments("start-fullscreen")
         driver = ChromeDriver(options)
@@ -23,8 +23,19 @@ open class BaseTestClass {
     }
 
     protected companion object {
-        const val BASE_URL: String = "https://github.com/"
+
         const val USER: String = "izzyjr"
+
+        // URL PATHS
+        const val BASE_URL: String = "https://github.com/"
+        const val USER_URL: String = "https://github.com/izzyjr"
+        const val TRIBUTE_REPO: String = "https://github.com/izzyjr/Tribute"
+        const val REPOS_URL: String = "https://github.com/izzyjr?tab=repositories"
+
+        // XPATH
+        const val TRIBUTE_REPO_XPATH: String = "//span[text()='Tribute']"
+        const val REPOSITORIES_XPATH: String = "//a[@itemprop='name codeRepository']"
+        const val NEXT_BUTTON_XPATH: String = "//*[text()='Next']"
     }
 
 }
