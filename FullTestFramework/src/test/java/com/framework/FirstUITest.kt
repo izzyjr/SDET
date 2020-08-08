@@ -30,7 +30,6 @@ class FirstUITest : BaseTestClass() {
     fun repoLinkGoesToCorrectRepo() {
 
         // Arrange
-        val repoUrl: String = TRIBUTE_REPO
         driver.get(USER_URL)
 
         // Act
@@ -39,7 +38,7 @@ class FirstUITest : BaseTestClass() {
 
         // Assert
         val actualRepoUrl: String = driver.currentUrl
-        assertEquals(actualRepoUrl, repoUrl)
+        assertEquals(actualRepoUrl, TRIBUTE_REPO)
     }
 
     @Test(enabled = true)
