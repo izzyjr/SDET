@@ -17,6 +17,7 @@ class GetHeaderTest {
 
     @BeforeTest
     fun sendGetToBaseEndpoint() {
+
         // Arrange
         val request: Request = Request.Builder().addHeader("User-Agent", "OkHttp3")
                 .url(BASE_URL).get().build()
@@ -28,7 +29,6 @@ class GetHeaderTest {
     @Test
     fun getReturns200() {
         val actualCode: Int = response.code
-        // Assert
         assertEquals(200, actualCode)
     }
 
@@ -41,6 +41,8 @@ class GetHeaderTest {
     fun testingHeaders(header: String, expected: String) {
         val actualContentType: String = response.headers[header]!!
         assertEquals(expected, actualContentType)
-
     }
+
+
+
 }
