@@ -8,6 +8,7 @@ import okhttp3.*
 import org.testng.Assert.assertEquals
 import org.testng.annotations.Test
 import okhttp3.RequestBody.Companion.toRequestBody
+import java.util.*
 
 class PostAndDelete {
 
@@ -17,12 +18,17 @@ class PostAndDelete {
     @Test
     fun postWithoutAuthorizationFails() {
 
+        // Set Authentication
+        val auth: String = "$EMAIL:$PASSWORD"
+        val encodedAuth: ByteArray = Base64.getEncoder().encode(auth.toByteArray(Charsets.ISO_8859_1))
+        val authHeader: String = "Basic " + String(encodedAuth)
+
         // Arrange - create request
         val json: String = "{\"name\": \"deleteme\"}"
 
         val request: Request = Request.Builder()
                 .url("$BASE_URL/user/repos")
-                .addHeader("Authorization", Credentials.basic(EMAIL, PASSWORD))
+                .addHeader("Authorization", authHeader)
                 .post(json.toRequestBody())
                 .build()
 
