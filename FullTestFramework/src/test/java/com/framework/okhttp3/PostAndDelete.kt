@@ -1,9 +1,9 @@
 package com.framework.okhttp3
 
-import Utils.Companion.EMAIL
+import Utils.Companion.EMAIL_USER
 import Utils.Companion.PASSWORD
 import Utils.Companion.TOKEN
-import com.framework.MesaUtils.Companion.BASE_URL
+import com.framework.okhttp3.ApiBaseClass.Companion.BASE_URL
 import okhttp3.*
 import org.testng.Assert.assertEquals
 import org.testng.annotations.Test
@@ -19,7 +19,7 @@ class PostAndDelete {
     fun postWithoutAuthorizationFails() {
 
         // Set Authentication
-        val auth: String = "$EMAIL:$PASSWORD"
+        val auth: String = "$EMAIL_USER:$PASSWORD"
         val encodedAuth: ByteArray = Base64.getEncoder().encode(auth.toByteArray(Charsets.ISO_8859_1))
         val authHeader: String = "Basic " + String(encodedAuth)
 
