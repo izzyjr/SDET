@@ -34,7 +34,7 @@ class SimpleMapTest : ApiBaseClass() {
     @Test
     fun returnsCorrectID() {
         loginValue = getValueFor(jsonObject, ID)
-        assertEquals(loginValue as Int, 29586548)
+        assertEquals(loginValue, 29586548)
     }
 
     @Test
