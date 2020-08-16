@@ -28,7 +28,7 @@ class SimpleMapTest : ApiBaseClass() {
     @Test
     fun returnsCorrectLogin() {
         loginValue = getValueFor(jsonObject, LOGIN)
-        assertEquals(loginValue.toString(), "izzyjr")
+        assertEquals(loginValue, "izzyjr")
     }
 
     @Test
