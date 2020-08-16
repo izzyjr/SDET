@@ -1,8 +1,35 @@
-package com.framework
+package com.framework.okhttp3
 
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import okhttp3.ResponseBody
 import org.json.JSONObject
 
-class MesaUtils {
+open class ApiBaseClass {
+
+    protected val httpClient: OkHttpClient = OkHttpClient()
+    protected lateinit var response: Response
+    protected lateinit var responseBody: ResponseBody
+    protected lateinit var jsonBody: String
+
+    open fun userSendRequest(): JSONObject {
+        // Arrange - create request
+        val request: Request = Request.Builder().addHeader("User-Agent", "OkHttp3")
+                .url("$BASE_URL/users/izzyjr")
+                .get()
+                .build()
+
+        // Act - send request
+        response = httpClient.newCall(request).execute()
+        responseBody = response.body!!
+        jsonBody = responseBody.string()
+        return JSONObject(jsonBody)
+    }
+
+    open fun getValueFor(jsonObject: JSONObject, key: String): Any {
+        return jsonObject.get(key)
+    }
 
     companion object {
         const val BASE_URL: String = "https://api.github.com"
@@ -16,11 +43,6 @@ class MesaUtils {
         const val ID = "id"
         const val TYPE = "type"
         const val EMAIL = "email"
-
-        fun getValueFor(jsonObject: JSONObject, key: String): Any {
-            return jsonObject.get(key)
-        }
-
     }
 
 }
