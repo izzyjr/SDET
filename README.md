@@ -1,4 +1,4 @@
-#SDET Training
+# SDET Training
 
 * UI Testing 
 * API Testing 
