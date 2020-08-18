@@ -1,5 +1,7 @@
 package com.framework.okhttp3
 
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -12,8 +14,10 @@ open class ApiBaseClass {
     protected lateinit var response: Response
     protected lateinit var responseBody: ResponseBody
     private lateinit var jsonBody: String
+    private val mapper = jacksonObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
-    open fun userSendRequest(): JSONObject {
+    open fun userEndpointSendRequest(): JSONObject {
         // Arrange - create request
         val request: Request = Request.Builder().addHeader("User-Agent", "OkHttp3")
                 .url("$BASE_URL/users/izzyjr")
@@ -29,6 +33,23 @@ open class ApiBaseClass {
 
     open fun getValueFor(jsonObject: JSONObject, key: String): Any {
         return jsonObject.get(key)
+    }
+
+    open fun sendRequest(endpoint: String): ResponseBody {
+        // Arrange - create request
+        val request: Request = Request.Builder().addHeader("User-Agent", "OkHttp3")
+                .url(endpoint)
+                .get()
+                .build()
+
+        // Act - send request
+        response = httpClient.newCall(request).execute()
+        return response.body!!
+    }
+
+    open fun <T> unmarshalGeneric(responseBody: ResponseBody, clazz: Class<T>): T {
+        jsonBody = responseBody.string()
+        return mapper.readValue(jsonBody, clazz)
     }
 
     companion object {

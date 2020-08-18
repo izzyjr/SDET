@@ -1,5 +1,6 @@
 package com.framework.okhttp3
 
+import com.framework.entities.User.Companion.BIO
 import com.framework.entities.User.Companion.EMAIL
 import com.framework.entities.User.Companion.ID
 import com.framework.entities.User.Companion.LOGIN
@@ -17,7 +18,7 @@ class SimpleMapTest : ApiBaseClass() {
 
     @BeforeTest
     fun setUp() {
-        jsonObject = userSendRequest()
+        jsonObject = userEndpointSendRequest()
     }
 
     @AfterTest
@@ -49,4 +50,9 @@ class SimpleMapTest : ApiBaseClass() {
         assertEquals(loginValue.toString(), "null")
     }
 
+    @Test
+    fun returnsBio() {
+        loginValue = getValueFor(jsonObject, BIO)
+        assertEquals(loginValue.toString(), "∆")
+    }
 }
