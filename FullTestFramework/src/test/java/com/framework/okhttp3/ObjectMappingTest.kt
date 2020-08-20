@@ -27,5 +27,4 @@ class ObjectMappingTest : ApiBaseClass() {
                 unmarshalGeneric(responseBody, AuthenticationRequired::class.java)
         assertEquals(authenticationRequired.message, "Requires authentication")
     }
-
 }

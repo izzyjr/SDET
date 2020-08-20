@@ -29,5 +29,4 @@ class StringParsingTest : ApiBaseClass() {
         // Assert
         Assert.assertTrue("\"login\":\"izzyjr\"" in responseBody.string())
     }
-
 }

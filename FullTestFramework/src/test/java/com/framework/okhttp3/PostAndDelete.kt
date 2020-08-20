@@ -1,8 +1,8 @@
 package com.framework.okhttp3
 
-import Utils.Companion.EMAIL_USER
-import Utils.Companion.PASSWORD
-import Utils.Companion.TOKEN
+import Secret.Companion.EMAIL_USER
+import Secret.Companion.PASSWORD
+import Secret.Companion.TOKEN
 import com.framework.okhttp3.ApiBaseClass.Companion.BASE_URL
 import okhttp3.*
 import org.testng.Assert.assertEquals
@@ -15,7 +15,7 @@ class PostAndDelete {
     private val httpClient: OkHttpClient = OkHttpClient()
     private lateinit var response: Response
 
-    @Test
+    @Test(priority = 0)
     fun postWithoutAuthorizationFails() {
 
         // Set Authentication
@@ -40,7 +40,7 @@ class PostAndDelete {
         assertEquals(actualCode, 201)
     }
 
-    @Test
+    @Test(priority = 1)
     fun deleteIsSuccessful() {
 
         // Arrange - create request
@@ -55,5 +55,4 @@ class PostAndDelete {
         // Assert
         assertEquals(actualCode, 204)
     }
-
 }

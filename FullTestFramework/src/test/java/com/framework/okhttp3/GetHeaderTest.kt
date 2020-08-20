@@ -42,7 +42,4 @@ class GetHeaderTest {
         val actualContentType: String = response.headers[header]!!
         assertEquals(expected, actualContentType)
     }
-
-
-
 }
