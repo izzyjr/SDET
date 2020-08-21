@@ -2,13 +2,18 @@ package com.framework.okhttp3
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.framework.CommonPropertiesManager
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.ResponseBody
 import org.json.JSONObject
 
-open class ApiBaseClass {
+open class ApiBaseClass : CommonPropertiesManager() {
+
+    init {
+        loadFile()
+    }
 
     protected val httpClient: OkHttpClient = OkHttpClient()
     protected lateinit var response: Response
