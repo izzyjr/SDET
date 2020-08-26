@@ -11,10 +11,6 @@ import org.json.JSONObject
 
 open class ApiBaseClass : CommonPropertiesManager() {
 
-    init {
-        loadFile()
-    }
-
     protected val httpClient: OkHttpClient = OkHttpClient()
     protected lateinit var response: Response
     protected lateinit var responseBody: ResponseBody

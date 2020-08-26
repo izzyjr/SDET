@@ -1,11 +1,6 @@
 package com.framework.okhttp3
 
 
-import com.framework.okhttp3.SimpleMapTest.Properties.bio
-import com.framework.okhttp3.SimpleMapTest.Properties.email
-import com.framework.okhttp3.SimpleMapTest.Properties.id
-import com.framework.okhttp3.SimpleMapTest.Properties.login
-import com.framework.okhttp3.SimpleMapTest.Properties.type
 import org.json.JSONObject
 import org.testng.Assert.assertEquals
 import org.testng.annotations.AfterTest
@@ -57,7 +52,7 @@ class SimpleMapTest : ApiBaseClass() {
         assertEquals(loginValue.toString(), "∆")
     }
 
-    object Properties {
+    companion object {
         val login: String = loadProp("login")
         val id: String = loadProp("id")
         val type: String = loadProp("type")
