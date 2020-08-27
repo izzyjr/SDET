@@ -1,6 +1,6 @@
-package com.framework.uitests
+package com.ui.uitests
 
-import com.framework.DriverFactory.Companion.getChromeDriver
+import com.utils.DriverFactory.Companion.getChromeDriver
 import org.openqa.selenium.WebDriver
 
 open class BaseTestClass {

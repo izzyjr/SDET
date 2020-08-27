@@ -1,6 +1,6 @@
-package com.framework
+package com.utils
 
-import Secret.Companion.CHROME_PATH
+import com.utils.Secret.Companion.CHROME_PATH
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions

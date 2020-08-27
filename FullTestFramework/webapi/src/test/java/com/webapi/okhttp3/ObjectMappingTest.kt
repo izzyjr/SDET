@@ -1,4 +1,4 @@
-package com.framework.okhttp3
+package com.webapi.okhttp3
 
 import com.framework.entities.AuthenticationRequired
 import com.framework.entities.FullUserObject

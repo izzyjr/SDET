@@ -1,13 +1,15 @@
-package com.framework.okhttp3
+package com.webapi.okhttp3
 
-import Secret.Companion.EMAIL_USER
-import Secret.Companion.PASSWORD
-import Secret.Companion.TOKEN
-import com.framework.okhttp3.ApiBaseClass.Companion.BASE_URL
-import okhttp3.*
+import com.webapi.okhttp3.ApiBaseClass.Companion.BASE_URL
+import com.utils.Secret.Companion.EMAIL_USER
+import com.utils.Secret.Companion.PASSWORD
+import com.utils.Secret.Companion.TOKEN
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
 import org.testng.Assert.assertEquals
 import org.testng.annotations.Test
-import okhttp3.RequestBody.Companion.toRequestBody
 import java.util.*
 
 class PostAndDelete {

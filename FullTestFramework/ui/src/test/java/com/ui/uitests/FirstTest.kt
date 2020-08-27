@@ -1,4 +1,4 @@
-package com.framework
+package com.ui.uitests
 
 import org.testng.Assert
 import org.testng.annotations.Test

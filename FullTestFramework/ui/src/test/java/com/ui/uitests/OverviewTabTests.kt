@@ -1,4 +1,4 @@
-package com.framework.uitests
+package com.ui.uitests
 
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement

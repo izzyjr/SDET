@@ -1,8 +1,8 @@
-package com.framework.okhttp3
+package com.webapi.okhttp3
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.framework.CommonPropertiesManager
+import com.utils.CommonPropertiesManager
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response

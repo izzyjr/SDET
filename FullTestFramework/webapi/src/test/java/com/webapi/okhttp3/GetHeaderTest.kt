@@ -1,7 +1,7 @@
-package com.framework.okhttp3
+package com.webapi.okhttp3
 
-import com.framework.okhttp3.ApiBaseClass.Companion.BASE_URL
-import com.framework.okhttp3.ApiBaseClass.Companion.testHeaders
+import com.webapi.okhttp3.ApiBaseClass.Companion.BASE_URL
+import com.webapi.okhttp3.ApiBaseClass.Companion.testHeaders
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response

@@ -1,4 +1,4 @@
-package com.framework.okhttp3
+package com.webapi.okhttp3
 
 import okhttp3.Request
 import org.testng.Assert
