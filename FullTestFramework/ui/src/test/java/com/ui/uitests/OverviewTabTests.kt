@@ -29,12 +29,12 @@ class OverviewTabTests : BaseTestClass() {
     fun repoLinkGoesToCorrectRepo() {
 
         // Act
-        val repository: WebElement = driver.findElement(By.xpath(TRIBUTE_REPO_XPATH))
+        val repository: WebElement = driver.findElement(By.xpath(SDET_REPO_XPATH))
         repository.click()
 
         // Assert
         val actualRepoUrl: String = driver.currentUrl
-        assertEquals(actualRepoUrl, TRIBUTE_REPO)
+        assertEquals(actualRepoUrl, SDET_REPO)
     }
 
     @AfterTest

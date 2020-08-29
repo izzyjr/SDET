@@ -19,7 +19,7 @@ class RepoTabTests : BaseTestClass() {
     fun countNumberOfRepos() {
 
         // Arrange
-        val expectedRepoCount: Int = 66
+        val expectedRepoCount: Int = 64
 
         // Act
         var flag: Boolean = true

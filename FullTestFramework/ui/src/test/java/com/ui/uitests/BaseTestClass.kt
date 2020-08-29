@@ -22,11 +22,11 @@ open class BaseTestClass {
         // URL PATHS
         const val BASE_URL: String = "https://github.com/"
         const val USER_URL: String = "https://github.com/izzyjr"
-        const val TRIBUTE_REPO: String = "https://github.com/izzyjr/Tribute"
+        const val SDET_REPO: String = "https://github.com/izzyjr/SDET"
         const val REPOS_URL: String = "https://github.com/izzyjr?tab=repositories"
 
         // XPATH
-        const val TRIBUTE_REPO_XPATH: String = "//span[text()='Tribute']"
+        const val SDET_REPO_XPATH: String = "//span[text()='SDET']"
         const val REPOSITORIES_XPATH: String = "//a[@itemprop='name codeRepository']"
         const val NEXT_BUTTON_XPATH: String = "//*[text()='Next']"
     }
