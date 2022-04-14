@@ -2,7 +2,7 @@
 
 * UI Testing 
 * API Testing 
-* Creating Test Automation Framework
+* Creating Full Test Automation Framework
 
 ## Technologies: 
 
